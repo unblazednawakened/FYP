@@ -1,4 +1,4 @@
 <?php
-include("sessionCheck.php");
-echo "index";
+include("session.php");
+echo "INDEX!";
 ?>
