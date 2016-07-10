@@ -7,8 +7,10 @@
 
       $myusername = mysqli_real_escape_string($db,$_POST['username']);
       $mypassword = mysqli_real_escape_string($db,$_POST['password']);
+	  
+	  $pass = sha1($mypassword);
 
-      $sql = "SELECT id FROM admin WHERE username = '$myusername' and passcode = '$mypassword'";
+      $sql = "SELECT driver_id FROM driver WHERE driver_name = '$myusername' and password = '$pass'";
       $result = mysqli_query($db,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       $active = $row['active'];
@@ -18,7 +20,7 @@
       // If result matched $myusername and $mypassword, table row must be 1 row
 
       if($count == 1) {
-         session_register("myusername");
+         //session_register("myusername");
          $_SESSION['login_user'] = $myusername;
 
          header("location: welcome.php");
@@ -65,7 +67,7 @@
                   <input type = "submit" value = " Submit "/><br />
                </form>
 
-               <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
+               <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php ?></div>
 
             </div>
 
